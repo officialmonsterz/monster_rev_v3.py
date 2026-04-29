@@ -1,0 +1,89 @@
+{
+  "apis": {
+    "shodan": {
+      "key": "API KEY HERE"
+    },
+    "virustotal": {
+      "key": "API KEY HERE"
+    },
+    "securitytrails": {
+      "key": "API KEY HERE"
+    },
+    "ipdata": {
+      "key": "API KEY HERE"
+    },
+    "ip2location": {
+      "key": "API KEY HERE"
+    },
+    "viewdns": {
+      "key": "API KEY HERE"
+    },
+    "whoisxml": {
+      "key": "API KEY HERE"
+    }
+  },
+  "gold_detection": {
+    "enabled": true,
+    "min_score": 3,
+    "categories": {
+      "database": {
+        "ports": [21, 22, 23, 25, 53, 80, 110, 111, 123, 135, 137, 139, 143, 389, 443],
+        "weight": 3
+      },
+      "marketplace": {
+        "ports": [443, 80, 8080, 8443, 3000, 5000, 8000, 8888, 9090, 4443],
+        "weight": 2
+      },
+      "secret_storage": {
+        "ports": [22, 443, 993, 995, 8443, 989, 990, 636, 3268, 3269],
+        "weight": 4
+      },
+      "blockchain": {
+        "ports": [8333, 8332, 18332, 18333, 30303, 30304, 8545, 8546, 4444, 46657],
+        "weight": 5
+      },
+      "api_multi_source": {
+        "min_sources": 3,
+        "weight": 2
+      },
+      "vulnerable_services": {
+        "ports": [21, 23, 3389, 5900, 5901],
+        "weight": 3
+      }
+    }
+  },
+  "output": {
+    "directory": "results",
+    "format": "json",
+    "detailed_report": true,
+    "save_api_status": true,
+    "save_crack_commands": true
+  },
+  "caching": {
+    "enabled": true,
+    "database": "monster_rev_cache.db",
+    "ttl_hours": 24
+  },
+  "rate_limiting": {
+    "enabled": true,
+    "max_concurrent": 5,
+    "delay_between_requests_ms": 200,
+    "api_specific": {
+      "shodan": 1,
+      "virustotal": 4,
+      "securitytrails": 1,
+      "ip2location": 2,
+      "viewdns": 2
+    }
+  },
+  "port_scanning": {
+    "enabled": true,
+    "timeout_seconds": 2,
+    "max_threads": 100,
+    "rate_limit": 1000
+  },
+  "dns_resolution": {
+    "timeout_seconds": 5,
+    "max_retries": 2
+  }
+}
